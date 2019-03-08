@@ -8,6 +8,7 @@ import numpy as np
 import numpy.linalg as linalg
 
 from error_wrongvec import WrongVecError
+from functools import reduce
 
 
 class Distance(object):
@@ -64,8 +65,7 @@ class PearsonDistance(Distance):
         sqrt1, sqrt2 = (sqrt(sum([pow(item, 2) for item in v1])), sqrt(sum([pow(item, 2) for item in v2])))
         if sqrt1 * sqrt2 == 0:
             return 1
-        return - reduce(lambda n, m: n + m, [i * j for i, j in zip(v1, v2)]) \
-               / (sqrt1 * sqrt2)
+        return - reduce(lambda n, m: n + m, [i * j for i, j in zip(v1, v2)]) / (sqrt1 * sqrt2)
 
     def _avg(self, vec):
         """
@@ -79,7 +79,8 @@ class PearsonDistance(Distance):
         """
         size = 0.0
         for i in vec[0]:
-            if i != 0: size += 1
+            if i != 0:
+                size += 1
         if size == 0:
             return 0
         return vec.sum() / size
@@ -88,7 +89,7 @@ class PearsonDistance(Distance):
 # end PearsonDistance
 
 
-class ConsineDistance(Distance):
+class CosineDistance(Distance):
     """
     consine distance
 
@@ -99,15 +100,15 @@ class ConsineDistance(Distance):
         """
         Compute distance of two vector by consine distance
         """
-        super(ConsineDistance, self).distance(vec1, vec2)  # super method
+        super(CosineDistance, self).distance(vec1, vec2)  # super method
         num = np.dot(vec1, vec2)
-        denom = linalg.norm(vec1) * linalg.norm(vec2)
+        de_norm = linalg.norm(vec1) * linalg.norm(vec2)
         if num == 0:
             return 1
-        return - num / denom
+        return - num / de_norm
 
 
-# end ConsineDistance
+# end CosineDistance
 
 
 class SqrtDistance(Distance):

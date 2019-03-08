@@ -4,7 +4,7 @@
 # data reference : R. A. Fisher (1936). "The use of multiple measurements in taxonomic problems"
 
 from distance_builder import *
-from distance_calc import SqrtDistance
+from distance import SqrtDistance
 
 if __name__ == '__main__':
     builder = DistanceBuilder()

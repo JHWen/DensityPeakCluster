@@ -10,7 +10,7 @@ class DistanceBuilder(object):
     """
 
     def __init__(self):
-        self.vectors = []
+        self.vectors = list()
 
     def load_points(self, filename):
         """
@@ -21,7 +21,7 @@ class DistanceBuilder(object):
         """
         with open(filename, 'r') as fp:
             for line in fp:
-                self.vectors.append(np.array(map(float, line.split('\t')[:-1]), dtype=np.float32))
+                self.vectors.append(np.array(list(map(float, line.split('\t')[:-1])), dtype=np.float32))
         self.vectors = np.array(self.vectors, dtype=np.float32)
 
     def build_distance_file_for_cluster(self, distance_obj, filename):

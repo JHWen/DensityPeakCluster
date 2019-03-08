@@ -1,7 +1,6 @@
 #! /usr/bin/env python
-#-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
-import distance
-import pearson_distance
+from distance_calc import SqrtDistance, PearsonDistance, CosineDistance
 
-__all__ = ['distance', 'pearson_distance']
+__all__ = ['SqrtDistance', 'PearsonDistance', 'CosineDistance']
