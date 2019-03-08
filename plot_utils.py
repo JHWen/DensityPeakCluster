@@ -46,7 +46,6 @@ def plot_scatter_diagram(which_fig, x, y, x_label='x', y_label='y', title='title
     plt.title(title)
     plt.xlabel(x_label)
     plt.ylabel(y_label)
-    plt.show()
 
 
 if __name__ == '__main__':

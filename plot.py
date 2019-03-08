@@ -18,6 +18,7 @@ def plot_rho_delta(rho, delta):
     logger.info("PLOT: rho-delta plot")
     plot_scatter_diagram(0, rho[1:], delta[1:], x_label='rho', y_label='delta', title='Decision Graph')
     plt.savefig('Decision Graph.jpg')
+    plt.show()
 
 
 def plot_cluster(cluster):
@@ -47,6 +48,7 @@ def plot_cluster(cluster):
     plot_scatter_diagram(1, dp_mds[:, 0], dp_mds[:, 1], title='2D Nonclassical Multidimensional Scaling',
                          style_list=cls)
     plt.savefig("2D Nonclassical Multidimensional Scaling.jpg")
+    plt.show()
 
 
 def plot_rhodelta_rho(rho, delta):
@@ -71,8 +73,8 @@ def plot_rhodelta_rho(rho, delta):
     plt.xlabel('sorted rho')
     plt.ylabel('rho*delta')
     plt.title("Decision Graph RhoDelta-Rho")
-    plt.show()
     plt.savefig('Decision Graph RhoDelta-Rho.png')
+    plt.show()
 
 
 if __name__ == '__main__':
