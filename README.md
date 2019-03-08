@@ -59,6 +59,8 @@ python step2_cluster.py
 - [Matplotlib](http://matplotlib.sourceforge.net/): For plotting data to choose threshold
 - [Scikit-Learn](https://github.com/scikit-learn/scikit-learn): use for mds to plot result
 
+- [Python Environment](https://www.python.org/): migrate from python 2 to python 3
+
 ## Reference
 - [Clustering by fast search and find of density peaks](http://www.sciencemag.org/content/344/6191/1492.full)
 
