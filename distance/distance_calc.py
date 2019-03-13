@@ -102,12 +102,12 @@ class CosineDistance(Distance):
         """
         super(CosineDistance, self).distance(vec1, vec2)  # super method
         num = np.dot(vec1, vec2)
-        de_norm = linalg.norm(vec1) * linalg.norm(vec2)
-        if num == 0:
-            return 1
-        return - num / de_norm
-
-
+        denum = np.linalg.norm(vec1) * np.linalg.norm(vec2)
+        if denum == 0:
+            denum = 1
+        cosine = num / denum
+        sim = 0.5 + 0.5 * cosine
+        return 1 - sim
 # end CosineDistance
 
 
