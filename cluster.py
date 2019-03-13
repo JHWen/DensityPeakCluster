@@ -5,8 +5,24 @@ import sys
 import math
 import logging
 import numpy as np
+import matplotlib.pyplot as plt
+from plot_utils import plot_scatter_diagram
 
 logger = logging.getLogger("dpc_cluster")
+
+
+def plot_rho_delta(rho, delta):
+    """
+    Plot scatter diagram for rho-delta points
+
+    Args:
+        rho   : rho list
+        delta : delta list
+    """
+    logger.info("PLOT: rho-delta plot")
+    plot_scatter_diagram(0, rho[1:], delta[1:], x_label='rho', y_label='delta', title='Decision Graph')
+    plt.savefig('Decision Graph.jpg')
+    plt.show()
 
 
 def load_paper_data(distance_f):
@@ -157,14 +173,14 @@ def min_distance(max_id, max_dis, distances, rho):
     for i in range(1, max_id):
         for j in range(0, i):
             old_i, old_j = sort_rho_idx[i], sort_rho_idx[j]
-            if distances[(old_i, old_j)] < delta[old_i]:
+            if distances[(old_i, old_j)] <= delta[old_i]:
                 delta[old_i] = distances[(old_i, old_j)]
                 nearest_neighbor[old_i] = old_j
         if i % (max_id // 10) == 0:
             logger.info("PROGRESS: at index #%i" % i)
     # todo 为啥取delta的最大值,貌似只要是个最大值就好了
     delta[sort_rho_idx[0]] = max(delta)
-    return np.array(delta, np.float32), np.array(nearest_neighbor, np.float32)
+    return np.array(delta, np.float32), np.array(nearest_neighbor, np.int)
 
 
 class DensityPeakCluster(object):
@@ -213,6 +229,8 @@ class DensityPeakCluster(object):
         delta, nearest_neighbor = min_distance(max_id, max_dis, distances, rho)
         logger.info("PROGRESS: start cluster")
 
+        # 绘制决策图
+        plot_rho_delta(rho, delta)
         # 3.通过设定rho和delta阈值来确定聚类中心个数
         # cl/icl in cluster_dp.m
         cluster, cluster_center = {}, {}

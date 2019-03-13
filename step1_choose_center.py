@@ -22,4 +22,6 @@ if __name__ == '__main__':
     # plot('./data/data_others/spiral_distance.dat')
     # plot('./data/data_others/aggregation_distance.dat')
     # plot('./data/data_others/flame_distance.dat')
-    plot('./data/data_others/jain_distance.dat')
+    # plot('./data/data_others/jain_distance.dat')
+    plot('./data/spam_mail_data/spam_distance_1000.dat', False)
+    # plot('./data/data_others/aggregation_cosine_distance.dat', False)
